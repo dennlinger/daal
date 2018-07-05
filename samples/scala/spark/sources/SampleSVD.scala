@@ -38,7 +38,7 @@ object SampleSVD extends App {
     val dataRDD = data.map(s => Vectors.dense(s.split(' ').map(_.toDouble))).cache()
 
     val nRows = data.count()
-    val nCols = data.first.length
+    val nCols = dataRDD.first.size
 
     val result = SVD.computeSVD(new RowMatrix(dataRDD, nRows, nCols))
 
